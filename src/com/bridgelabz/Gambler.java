@@ -18,25 +18,26 @@ public class Gambler {
         int bets=0;
         int wins=0;
         int currentAmount=0;
+        double Goal=INITIAL_STAKE+(0.5*INITIAL_STAKE);
+        double netLoss=INITIAL_STAKE-(0.5*INITIAL_STAKE);
 
         Scanner sc =new Scanner(System.in);
         System.out.print("Enter Stake Amount: ");
         int stake=sc.nextInt();
 
-         int gambleResult=Gamble();
-        if(gambleResult==WIN){
-            System.out.println("You Won !!");
-            wins++;
+        while(currentAmount < Goal && currentAmount != netLoss){
+            int gambleResult=Gamble();
+            if(gambleResult==WIN){
+                System.out.println("You Won !!");
+                wins++;
+            }
+            else{
+                System.out.println("You Lost !!");
+                wins--;
+            }
+            currentAmount=wins+INITIAL_STAKE;
+            System.out.println(currentAmount);
         }
-        else if(gambleResult==LOSE){
-            System.out.println("You Lost !!");
-            wins--;
-        }
-        else{
-            System.out.println("You haven't placed your bet");
-        }
-        currentAmount=wins+INITIAL_STAKE;
-        System.out.println(currentAmount);
 
     }
 }
