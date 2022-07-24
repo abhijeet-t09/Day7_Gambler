@@ -13,18 +13,20 @@ public class Gambler {
         System.out.println("Initial Amount = $"+INITIAL_STAKE);
         System.out.println("Bet Amount = $"+BET_AMOUNT);
 
-        int result = (int)(Math.random()*10)%2;
-        int currentAmount = 0;
 
-        if (result == win){
-            System.out.println("You Won $"+BET_AMOUNT);
-            currentAmount = INITIAL_STAKE + BET_AMOUNT;
+        while(INITIAL_STAKE <150 && INITIAL_STAKE >50){
+            int result = (int)(Math.random()*10)%2;
+
+            if (result == win){
+                System.out.println("You Won $"+BET_AMOUNT);
+                INITIAL_STAKE = INITIAL_STAKE + BET_AMOUNT;
+            }
+            else{
+                System.out.println("You Lost $"+BET_AMOUNT);
+                INITIAL_STAKE = INITIAL_STAKE - BET_AMOUNT;
+            }
         }
-        else{
-            System.out.println("You Lost $"+BET_AMOUNT);
-            currentAmount = INITIAL_STAKE - BET_AMOUNT;
-        }
-        System.out.println("You have $"+currentAmount+" left");
+        System.out.println("You have $"+INITIAL_STAKE+" left");
 
     }
 }
