@@ -2,41 +2,29 @@ package com.bridgelabz;
 import java.util.*;
 public class Gambler {
 
-    static final int INITIAL_STAKE=100;
+    static int INITIAL_STAKE=100;
     static int BET_AMOUNT=1;
-    static final int WIN=1;
-    static final int LOSE=2;
-    static int Gamble(){
-        int n = 0;
-        Random r = new Random();
-        n=1+r.nextInt(2);
-        return n;
-    }
+    static int win = 1;
+
 
     public static void main(String[] args) {
+        System.out.println("Welcome to Gambling Simulator\n");
+
         System.out.println("Initial Amount = $"+INITIAL_STAKE);
-        int bets=0;
-        int wins=0;
-        int currentAmount=0;
+        System.out.println("Bet Amount = $"+BET_AMOUNT);
 
-        Scanner sc =new Scanner(System.in);
-        System.out.print("Enter Stake Amount: ");
-        int stake=sc.nextInt();
+        int result = (int)(Math.random()*10)%2;
+        int currentAmount = 0;
 
-         int gambleResult=Gamble();
-        if(gambleResult==WIN){
-            System.out.println("You Won !!");
-            wins++;
-        }
-        else if(gambleResult==LOSE){
-            System.out.println("You Lost !!");
-            wins--;
+        if (result == win){
+            System.out.println("You Won $"+BET_AMOUNT);
+            currentAmount = INITIAL_STAKE + BET_AMOUNT;
         }
         else{
-            System.out.println("You haven't placed your bet");
+            System.out.println("You Lost $"+BET_AMOUNT);
+            currentAmount = INITIAL_STAKE - BET_AMOUNT;
         }
-        currentAmount=wins+INITIAL_STAKE;
-        System.out.println(currentAmount);
+        System.out.println("You have $"+currentAmount+" left");
 
     }
 }
